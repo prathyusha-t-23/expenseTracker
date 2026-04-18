@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 
@@ -12,8 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177'], // Allow multiple Vite ports
-  credentials: true
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177'], // Allow multiple Vite ports
+    credentials: true
 }));
 
 const { MongoMemoryServer } = require('mongodb-memory-server');
@@ -23,7 +22,7 @@ const startServer = async () => {
         console.log('Starting Embedded MongoDB Database...');
         const mongoServer = await MongoMemoryServer.create();
         const mongoUri = mongoServer.getUri();
-        
+
         await mongoose.connect(mongoUri);
         console.log('Connected to Embedded MongoDB Memory Server successfully!');
 
@@ -38,5 +37,10 @@ const startServer = async () => {
         console.error('Failed to start embedded database:', err);
     }
 };
+const cors = require("cors");
+
+app.use(cors({
+    origin: "*"
+}));
 
 startServer();

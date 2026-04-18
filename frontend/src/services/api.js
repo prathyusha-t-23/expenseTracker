@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
-  withCredentials: true // For secure cookie storage
+    baseURL: 'https://expensetracker-uj1u.onrender.com',
+    withCredentials: true // For secure cookie storage
 });
 
 // Optionally, add interceptors here later if we need to handle 401s universally
